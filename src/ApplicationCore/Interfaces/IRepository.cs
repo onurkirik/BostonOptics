@@ -1,0 +1,24 @@
+﻿using ApplicationCore.Entities;
+using Ardalis.Specification;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ApplicationCore.Interfaces
+{
+    // <T> Generic bir yapıdır. Burada where T : BaseEntity dememiz şunu ifade etmektedir. BaseEntity içerisinde bulunan class'lar içine girebilir. 
+    public interface IRepository<T> where T : BaseEntity
+    {
+        Task<T?> GetByIdAsync(int id);
+        Task<List<T>> GetAllAsync();
+        Task<List<T>> GetAllAsync(ISpecification<T> specification);
+        Task<T> AddAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task DeleteAsync(T entity);
+        Task<int> CountAsync(ISpecification<T> specification);
+        Task<T> FirstAsync(ISpecification<T> specification);
+        Task<T?> FirstOrDefaultAsync(ISpecification<T> specification);
+    }
+}
