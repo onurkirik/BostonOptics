@@ -17,6 +17,6 @@ namespace ApplicationCore.Entities
         public int BrandId { get; set; }
 
         public Category Category { get; set; } = null!;
-        public Brand Barnd { get; set; } = null!;
+        public Brand Brand { get; set; } = null!;
     }
 }
