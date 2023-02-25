@@ -5,10 +5,13 @@ global using Microsoft.EntityFrameworkCore;
 using ApplicationCore.Interfaces;
 using Web.Interfaces;
 using Web.Services;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services.AddDbContext<AppIdentityDbcontext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("AppIdentityDbContext")));
 builder.Services.AddDbContext<ShopContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ShopContext")));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
@@ -36,7 +39,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseRequestLocalization("en-US");
 app.UseRouting();
 
 app.UseAuthentication();
