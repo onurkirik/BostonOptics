@@ -53,7 +53,12 @@ namespace Web.Services
 
         private async Task<List<SelectListItem>> GetCategoriesAsync()
         {
-            throw new NotImplementedException();
+            var categories = await _categoryRepo.GetAllAsync();
+            return categories.Select(x => new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+            }).ToList();
         }
     }
 }
